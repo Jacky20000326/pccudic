@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
 const Announcement = () => {
 	const flexStyle = {
 		display: "flex",
@@ -43,11 +43,12 @@ const Announcement = () => {
 										<Label>{item.lable}</Label>
 									</Info>
 								</AnnouncementStyled>
-								<AnnouncementImage></AnnouncementImage>
+								<AnnouncementImage src="http://www.gcd.pccu.edu.tw/img/news_pict/news_null.png"></AnnouncementImage>
 							</div>
 						);
 					})}
 				</Content>
+				<Separate_line_rwd />
 				<Category>
 					<div style={flexStyle}>
 						<SearchPng src={require("../../assets/search.png")}></SearchPng>
@@ -55,6 +56,7 @@ const Announcement = () => {
 						<SearchInput placeholder="Search"></SearchInput>
 					</div>
 					<CategoryTxt>公告分類</CategoryTxt>
+
 					<CategoryBtnContainer MT="22px">
 						<CategoryBtn BtnWidth="52px">全部
 						</CategoryBtn>
@@ -73,14 +75,24 @@ const Announcement = () => {
 						<CategoryBtn BtnWidth="57px">逾期</CategoryBtn>
 
 					</CategoryBtnContainer>
+					<All_announcements_container>
+						<All_announcements to="/announcement">查看所有公告</All_announcements>
+					</All_announcements_container>
+
 				</Category>
+
 			</AnnouncementBlock>
+
 		</AnnouncementContainer>
 	);
 };
 const AnnouncementContainer = styled.div`
 	width: 100%;
 	padding: 0px 132px 0px 132px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+		padding: ${({ theme }) => theme.w_900.padding};
+
+	}
 `;
 const AnnouncementTxt = styled.div`
 	&:after {
@@ -100,8 +112,10 @@ const AnnouncementTxt = styled.div`
 
 const AnnouncementBlock = styled.div`
 	display: flex;
-
-	
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        flex-direction: column-reverse;
+		
+	}
 `;
 const Content = styled.div`
 	flex: 7;
@@ -126,20 +140,30 @@ const Title = styled.div`
 		background-color: #f69393;
 		margin-top: 12px;
 	}
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        font-size: 0.4em;
+		
+	}
 `;
 const Test = styled.div`
 	color: #9c9c9c;
 	font-size: 0.3em;
 	margin-top: 21px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        font-size: 0.2em;
+		
+	}
 `;
 
 const Info = styled.div`
 	display: flex;
 	margin-top: 20px;
+	
 `;
 const Time = styled.div`
 	color: #949494;
 	font-size: 0.2em;
+	
 `;
 const Label = styled.div`
 	width: 82px;
@@ -151,6 +175,11 @@ const Label = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+		display: none;
+	}
+
+	
 `;
 const Separator = styled.div`
 	width: 20px;
@@ -160,6 +189,9 @@ const Separator = styled.div`
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 10px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        display: none;	
+	}
 `;
 
 const Separate_line = styled.hr`
@@ -173,20 +205,35 @@ const Separate_line = styled.hr`
 
 
 const AnnouncementImage = styled.img`
-	width: 280px;
-	height: 188px;
+	width: 220px;
+	height: 160px;
 	margin: 30px 0px 0px 20px;
 	border-radius: 20px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+		height: 80px;
+		width: 160px;
+		
+	}
 `;
 const Category = styled.div`
 	flex: 3; 
 	padding: 80px 0px 0px 240px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        display: flex;
+		flex-direction: column;
+
+		padding: 0px ;
+
+	}
 
 `;
 
 const SearchPng = styled.img`
 	width: 32px;
 	height: 32px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        display: none;	
+	}
 `;
 const SearchInput = styled.input`
 	border: none;
@@ -196,6 +243,9 @@ const SearchInput = styled.input`
 	width: 100px;
 	height: 28px;
 	outline: none;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+        display: none;	
+	}
 	
 `;
 const CategoryTxt = styled.h3`
@@ -204,10 +254,14 @@ const CategoryTxt = styled.h3`
 	color:  #F69393;
 	margin-top: 18px;
 	font-weight:200;
+
 `
 const CategoryBtnContainer = styled.div`
-	display: "flex";
+	display: flex;
 	margin-top: ${prop => prop.MT};
+	
+	
+
 `
 
 const CategoryBtn = styled.button`
@@ -220,6 +274,24 @@ const CategoryBtn = styled.button`
 	font-size: 12px;
 	margin-right: 8px;
 `
+const All_announcements_container = styled.div`
+	margin-top: 30px;
+`
+const All_announcements = styled(Link)`
 
+	color: #666666;
+	text-decoration: none;
+	transition: 0.3s;
+	&:hover{
+		color: #F69393;
+	}
+`
+const Separate_line_rwd = styled.hr`
+	background-image: linear-gradient(to right, rgba(255, 255, 255,1), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1));
+	margin: 30px 0px 0px 0px;
+	height: 1px;
+	border: none;
+	background-color: #555555;
+`
 
 export default Announcement;

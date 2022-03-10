@@ -46,18 +46,32 @@ const Footer_Container = styled.div`
     width: 100vw;
     height: 350px;
     margin-top: 170px;
-    background-color: #F7F7F7;
     display: flex;
     position: relative;
+    background-color: #f0f0f0;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        flex-direction: column;
+        padding: 30px 0px 100px 0px;
+	}
 `
 
 const Footer_Container_row = styled.div`
     flex:1;
     padding: 0px 82px 0px 82px;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        background-color: #f0f0f0;
+	}
+    
+
 `
 const Logo = styled.img`
     width:240px;
     height: 67px;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        width:210px;
+        height: 60px;
+        
+	}
 
 `
 const Footer_contact_txt = styled.h4`
@@ -92,6 +106,9 @@ const Footer_link_to_cms_container = styled.div`
     right: 30px;
     bottom: 10px;
     display: flex;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        display: none;
+	}
 
 
 `

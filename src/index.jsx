@@ -10,18 +10,27 @@ import Footer from "./components/Global_Components/Footer"
 import { ThemeProvider } from "styled-components";
 
 // mobile
-const mobile = {
-	w: "420px"
+const Theme = {
+	w_900: {
+		w: "900px",
+		padding: "0px 50px 0px 50px",
+		title_fs: "28px"
+	},
+	w_576: {
+		w: "576px",
+		padding: "0px 50px 0px 50px"
+	}
+
 }
 
 ReactDOM.render(
-	<ThemeProvider theme={mobile}>
+	<ThemeProvider theme={Theme}>
 		<React.StrictMode>
 			<Router>
 				<GlobalStyled />
 				<Nav ></Nav>
 				<App />
-				<Footer></Footer>
+				<Footer />
 			</Router>
 		</React.StrictMode>
 	</ThemeProvider>,

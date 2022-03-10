@@ -66,6 +66,10 @@ const Features = () => {
 
 const Feature_png_1 = styled.img`
     width: 60vw;
+    height: auto;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        width: 80vw;
+	}
 `
 const Title = styled.h4`
     font-size: 18px;
