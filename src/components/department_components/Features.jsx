@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from "framer-motion"
 const Features = () => {
     return (
-        <>
+        <motion.div initial={{ opacity: 0, top: "-50%", y: 0 }} animate={{ opacity: 1, y: -20, }} exit={{ opacity: 1, scale: .8, y: 0 }} transition={{ duration: 0.3 }}>
             <Feature_png_1 src={require("../../assets/feature_png1.png")} />
             <br />
             <br />
@@ -58,7 +59,7 @@ const Features = () => {
             <br />
             <br />
             <Feature_png_1 src={require("../../assets/feature_png2.png")} />
-        </>
+        </motion.div>
     )
 
 

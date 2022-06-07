@@ -6,7 +6,11 @@ export const GlobalStyled = createGlobalStyle`
         margin: 0px;
         box-sizing: border-box;
     }
-    
+    html,body{
+        scroll-behavior:smooth;
+        /* overflow: hidden; */
+    }
+
     li{
         list-style: none;
     }
@@ -16,7 +20,9 @@ export const GlobalStyled = createGlobalStyle`
     h3{
         font-size: 45px;
     }
-    
+    a{
+        text-decoration: none;
+    }
     
 `;
 // 此為全域css file

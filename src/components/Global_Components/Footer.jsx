@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from "react-router-dom"
 
 const Footer = () => {
     const flexStyle = {
@@ -21,18 +22,20 @@ const Footer = () => {
                     <Footer_link>02-2861-0511#37405~37406</Footer_link>
                     <Footer_link>crjuic@dep.pccu.edu.tw</Footer_link>
                 </Footer_link_container>
+
+
             </Footer_Container_row>
             <Footer_Container_row>
-                <Footer_contact_txt>服務學習</Footer_contact_txt>
+                <Footer_contact_txt>粉絲專頁連結</Footer_contact_txt>
                 <Footer_link_container>
-                    <Footer_link>服務學習(一)系辦公室時段查詢</Footer_link>
-                    <Footer_link>中國文化大學資訊傳播學系儀器設備借用申請單</Footer_link>
-                    <Footer_link>儀器設備外借數量即時表單</Footer_link>
-                    <Footer_link>中國文化大學資訊傳播學系攝影棚借用申請單</Footer_link>
-                    <Footer_link>攝影棚外借時段即時表單</Footer_link>
+                    <Footer_description>資傳系粉絲專頁連結</Footer_description>
+                    <Footer_link href="https://reurl.cc/g0Qx1z">https://reurl.cc/g0Qx1z</Footer_link>
+                    <Footer_description>資傳系系學會粉絲專頁連結</Footer_description>
+                    <Footer_link href="https://reurl.cc/g0Qx1z">https://www.facebook.com/pccudic/</Footer_link>
                 </Footer_link_container>
             </Footer_Container_row>
-            <Footer_link_to_cms_container>
+
+            <Footer_link_to_cms_container to="/cms/login">
                 <Footer_link_to_cms_txt>進入管理頁面</Footer_link_to_cms_txt>
                 <Footer_link_to_cms_image src={require("../../assets/cms_arrow.png")} />
             </Footer_link_to_cms_container>
@@ -45,7 +48,7 @@ export default Footer
 const Footer_Container = styled.div`
     width: 100vw;
     height: 350px;
-    margin-top: 170px;
+    /* margin-top: 170px; */
     display: flex;
     position: relative;
     background-color: #f0f0f0;
@@ -61,6 +64,7 @@ const Footer_Container_row = styled.div`
     @media (max-width: ${({ theme }) => theme.w_900.w}) {
         background-color: #f0f0f0;
 	}
+    
     
 
 `
@@ -91,17 +95,27 @@ const Footer_contact_txt = styled.h4`
         left: -25px;
 
     }
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        margin: 50px 0px 20px 0px ;
+        
+	}
+
 `
 const Footer_link_container = styled.div`
     display: flex;
     flex-direction: column;
+`
+const Footer_description = styled.div`
+ color: #a9a8a8;
+    font-size: 0.8em;
+    margin-bottom: 14px;
 `
 const Footer_link = styled.a`
     color: #F69393;
     font-size: 0.8em;
     margin-bottom: 14px;
 `
-const Footer_link_to_cms_container = styled.div`
+const Footer_link_to_cms_container = styled(Link)`
     position: absolute;
     right: 30px;
     bottom: 10px;

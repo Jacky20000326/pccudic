@@ -14,6 +14,7 @@ const Topic = () => {
                 <Side_Nav_container>
                     <SideNav topic={all_topic} />
                 </Side_Nav_container>
+                <Separate_line_rwd />
                 <All_topics_container>
                     <All_topics topic={all_topic} />
                 </All_topics_container>
@@ -23,11 +24,19 @@ const Topic = () => {
 }
 const SideNav_container = styled.div`
     padding: 0px 143px 0px 131px;
+    margin-bottom: 170px;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        padding: ${({ theme }) => theme.w_900.padding};
+	}
 `
 const Topic_txt = styled.div`
     margin-top: 60px;
 	color: #0050AE;
 	font-size: 32px;
+    @media (max-width: ${({ theme }) => theme.w_576.w}) {
+		font-size: 24px;
+
+	}
 `
 const Decorate_block = styled.div`
     width: 50px;
@@ -45,6 +54,9 @@ const Separate_line = styled.hr`
 const Flex_container = styled.div`
     margin-top: 45px;   
     display: flex;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+       flex-direction: column;
+	}
 
 `
 const Side_Nav_container = styled.div`
@@ -55,5 +67,11 @@ const All_topics_container = styled.div`
     flex:3;
 
 `
-
+const Separate_line_rwd = styled.hr`
+	background-image: linear-gradient(to right, rgba(255, 255, 255,1), rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1));
+	margin: 30px 0px 30px 0px;
+	height: 1px;
+	border: none;
+	background-color: #555555;
+`
 export default Topic

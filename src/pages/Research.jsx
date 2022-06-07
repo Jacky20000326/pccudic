@@ -52,6 +52,7 @@ const Research = () => {
 }
 const Research_container = styled.div`
 	padding: 0px 143px 0px 131px;
+	margin-bottom: 170px;
 	@media (max-width: ${({ theme }) => theme.w_900.w}) {
         padding: ${({ theme }) => theme.w_900.padding};
 		
@@ -61,6 +62,13 @@ const Research_txt = styled.div`
 	margin-top: 60px;
 	color: #0050AE;
 	font-size: 32px;
+	@media (max-width: ${({ theme }) => theme.w_900.w}) {
+		font-size: ${({ theme }) => theme.w_900.title_fs};
+	}
+	@media (max-width: ${({ theme }) => theme.w_576.w}) {
+		font-size: 24px;
+
+	}
 
 `
 const Decorate_block = styled.div`

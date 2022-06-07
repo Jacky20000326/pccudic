@@ -27,9 +27,13 @@ const Nav = () => {
 	// 改變點擊後樣式
 	let click_change_style = (e) => {
 		// 先將所有state改為false
+		if (e.path == "/Admissions") {
+			window.open("https://futurestudent.pccu.edu.tw/", '_blank');
+			return
+		}
 		links.forEach(item => item.state = false)
 		// 將link的state改為true
-		console.log(e)
+
 		e.state = true
 		// 重新載入元件
 		set_state_mobile_nav(0)
@@ -48,6 +52,7 @@ const Nav = () => {
 		})
 		if (route) {
 			route.state = true
+
 		} else {
 			return
 		}
@@ -131,8 +136,8 @@ const Links = styled.div`
 	justify-content: space-around;
 	align-items: center;
 	font-size: 15px;
-	min-width: 800px;
-	margin-left: 30px;
+	min-width: 700px;
+
 	@media (max-width: 1200px) {
 		display: none;
 	}

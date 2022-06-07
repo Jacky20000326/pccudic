@@ -61,10 +61,12 @@ const Course = () => {
 
 const Course_container = styled.div`
     padding: 0px 143px 0px 131px;
+	margin-bottom: 170px;
     @media (max-width: ${({ theme }) => theme.w_900.w}) {
 		padding: ${({ theme }) => theme.w_900.padding};
 
 	}
+    
 
 `
 

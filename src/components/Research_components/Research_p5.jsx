@@ -20,6 +20,10 @@ const Research_p5 = () => {
 const Pdf_container = styled.div`
     width: 55vw;
     height: 80vh;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        /* display: none; */
+        height: auto;
+	}
 
 `
 const Pdf_download_container = styled.div`

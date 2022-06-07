@@ -1,59 +1,110 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+
+import LightBox from './LightBox';
+import { GetTopic, GetTopicDetail } from "../../Store/TopicSlice"
+import { useDispatch, useSelector } from "react-redux"
 const Folio = () => {
-    const flexStyle = {
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        fontSize: "14px",
-        padding: "0px 20% 0px 20%",
+
+    // get dispatch
+    let dispatch = useDispatch()
+    // get Topic data
+    let TopicData = useSelector(item => item.UploadTopicReducer.topicData)
+    let Loaging = useSelector(item => item.UploadTopicReducer.loaging)
 
 
+
+
+
+    const img_big_container_style = { overflow: "hidden", width: "100%", height: "auto" }
+    const img_small_container_style = { overflow: "hidden", width: "50%", height: "auto" }
+
+    const [CurrentTopic, setCurrentTopic] = useState(null)
+    const [LightboxState, setLightboxState] = useState("none")
+    const GetCurrentTopic = (index) => {
+        setCurrentTopic(index.TP_title)
+        // get Topic detail data
+        dispatch(GetTopicDetail(index.TP_title))
+        // 開啟燈箱
+        setLightboxState("display")
+    }
+    const CloseLightbox = () => {
+        setLightboxState("none")
     }
 
-    const flex_image_style = { flex: 1 }
-    const img_big_container_style = { overflow: "hidden", width: "100%", height: "100%" }
-    const img_small_container_style = { overflow: "hidden", width: "50%", height: "100%" }
+    const getTopicDetail = () => {
 
+    }
+    useEffect(() => {
+        dispatch(GetTopic())
+
+    }, [])
     return (
-        <div style={flexStyle}>
-            <Folio_txt>2021年度畢業製作作品</Folio_txt>
+        <All_Topics_Container >
+            <Folio_txt>2021年度畢業製作代表作品</Folio_txt>
             <hr />
-            <Folio_Container>
-                <Folio_Container_row>
-                    <div style={img_big_container_style}>
-                        <Folio_image_big src="http://www.gcd.pccu.edu.tw/img/homepage_work/work_02/201901.png" />
-                    </div>
-                    <Folio_Container_child_row>
-                        <div style={img_small_container_style}>
-                            <Folio_image_small src="http://www.gcd.pccu.edu.tw/img/homepage_work/work_01/canisee2021.jpg" />
-                        </div>
-                        <div style={img_small_container_style}>
-                            <Folio_image_small src="http://www.gcd.pccu.edu.tw/img/homepage_work/work_01/Lost%20and%20Found.jpg" />
-                        </div>
-                    </Folio_Container_child_row>
-                </Folio_Container_row>
-                <Folio_Container_row>
-                    <Folio_Container_child_row>
-                        <div style={img_small_container_style}>
-                            <Folio_image_small src="http://www.gcd.pccu.edu.tw/img/homepage_work/work_01/%E9%81%94%E6%96%87%E8%A5%BF_2.jpg" />
-                        </div>
-                        <div style={img_small_container_style}>
-                            <Folio_image_small src="http://www.gcd.pccu.edu.tw/img/project/2018.png" />
-                        </div>
-                    </Folio_Container_child_row>
-                    <div style={img_big_container_style}>
-                        <Folio_image_big src="http://www.gcd.pccu.edu.tw/img/project/2017.jpg" />
-                    </div>
-                </Folio_Container_row>
-            </Folio_Container>
-            <All_folio_info>more...</All_folio_info>
-        </div>);
+            {
+                TopicData.length == 6 ?
+                    <Folio_Container>
+                        <Folio_Container_row>
+                            <div onClick={() => { GetCurrentTopic(TopicData[0]) }} style={img_big_container_style}>
+                                {Loaging ? <>Loading</> : <Folio_image_big src={require(`../../images/Topic_Images/${TopicData[0].TP_img}`)} />}
+
+                            </div>
+                            <Folio_Container_child_row>
+                                <div onClick={() => { GetCurrentTopic(TopicData[1]) }} style={img_small_container_style}>
+                                    {Loaging ? <>Loading</> : TopicData[1] ? <Folio_image_small src={require(`../../images/Topic_Images/${TopicData[1].TP_img}`)} /> : <></>}
+
+                                </div>
+                                <div onClick={() => { GetCurrentTopic(TopicData[2]) }} style={img_small_container_style}>
+                                    {Loaging ? <>Loading</> : <Folio_image_small src={require(`../../images/Topic_Images/${TopicData[2].TP_img}`)} />}
+
+                                </div>
+                            </Folio_Container_child_row>
+                        </Folio_Container_row>
+                        <Folio_Container_row>
+                            <Folio_Container_child_row>
+                                <div onClick={() => { GetCurrentTopic(TopicData[3]) }} style={img_small_container_style}>
+                                    {Loaging ? <>Loading</> : <Folio_image_small src={require(`../../images/Topic_Images/${TopicData[3].TP_img}`)} />}
+
+                                </div>
+                                <div onClick={() => { GetCurrentTopic(TopicData[4]) }} style={img_small_container_style}>
+                                    {Loaging ? <>Loading</> : <Folio_image_small src={require(`../../images/Topic_Images/${TopicData[4].TP_img}`)} />}
+
+                                </div>
+                            </Folio_Container_child_row>
+                            <div onClick={() => { GetCurrentTopic(TopicData[5]) }} style={img_big_container_style}>
+                                {Loaging ? <>Loading</> : <Folio_image_big src={require(`../../images/Topic_Images/${TopicData[5].TP_img}`)} />}
+
+                            </div>
+                        </Folio_Container_row>
+                    </Folio_Container> : <div style={{ color: "#f8b6b5", fontSize: "30px", border: "2px solid #f8b6b5", padding: "10px 20px 10px 20px" }}>即將公告</div>
+            }
+
+
+            {/* // 傳入index判斷燈箱顯示，及傳入state來判斷燈箱是否開啟 */}
+            <LightBox title={CurrentTopic} LightboxState={LightboxState} CloseLightbox={CloseLightbox} />
+
+        </All_Topics_Container >);
 };
+const All_Topics_Container = styled.div`
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-size: 14px;
+        padding: 0px 20% 0px 20%;
+        margin-bottom: 150px;
+       
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+            padding: 0px 10% 0px 10%;
+
+	}
+`
 
 const Folio_txt = styled.h3`
         align-items: center;
         margin-top: 100px;
+        
         color: #0050AE;
         /* color: ${(prop) => prop.theme.color}; */
         font-weight: 400;
@@ -68,16 +119,17 @@ const Folio_txt = styled.h3`
 // `
 const Folio_Container = styled.div`
 
-    width: 600px;
-    height: 450px;
+    width: 750px;
+    height: 520px;
     display: flex;
     overflow: hidden;
     box-shadow: -1px 2px 16px -4px rgba(0,0,0,0.65);
     
-    @media (max-width: 900px) {
-        width: 250px;
-        height: 220px;
+    @media (max-width: ${({ theme }) => theme.w_576.w}) {
+        width: 100%;
+        height: 100%;
 	}
+	
 `
 const Folio_Container_row = styled.div`
     flex: 1;
@@ -94,10 +146,11 @@ const Folio_Container_child_row = styled.div`
 `
 const Folio_image_big = styled.img`
     width: 100%;
-    height: 100%;
+    height: auto;
     background-size: cover;
     background-position: center;
     transition: 0.5s;
+    
     &:hover{
         transform: scale(1.2);
     }
@@ -106,20 +159,13 @@ const Folio_image_small = styled.img`
     width: 100%;
     height: 100%;
     transition: 0.5s;
+
     &:hover{
         transform: scale(1.2);
     }
 `
-const All_folio_info = styled.div`
-    font-size: 16px;
-    color: #847D7D;
-    font-weight: 350;
-    width: 100%;
-    margin-top: 10px;
-    padding: 0px 12% 0px 12%;
-    text-align: end;
 
-`
+
 
 
 export default Folio;

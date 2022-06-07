@@ -1,37 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
+import moment from 'moment';
 const Announcement_Category = () => {
-    const fakeArray = [
-        {
 
-            contenr: "我好帥我好帥我好帥我好帥我好帥我好帥我好帥我好帥我好帥",
-        },
-        {
+    let category = useSelector(item => item.AnnouncementReducer.value.category)
+    let [data, setData] = useState(null)
+    const getOtherAnnoucement = async () => {
+        let result = await axios.get("http://localhost:3003/api/UploadAnnouncement/get/PerAnnouncement", { category: category }).then(res => res.data)
+        setData(result.data.slice(0, 5))
 
-            contenr: "我好帥我好帥我好帥我好帥我好帥我好帥我好帥我好帥我好帥",
-        },
-        {
+    }
+    useEffect(() => {
+        getOtherAnnoucement()
+    }, [])
 
-            contenr: "我好帥我好帥我好帥我好帥我好帥我好帥我好帥我好帥我好帥",
-        }
-    ]
     return (
         <Announcement_Category_container>
-            <Announcement_other_Category_txt>查看公告</Announcement_other_Category_txt>
+            <Announcement_other_Category_txt>其他公告</Announcement_other_Category_txt>
             {
-                fakeArray.map(item => (
+                data ? data.map(item => (
 
                     <>
+                        <Link to={`/announcement/detail/${item.A_id}`}>
+                            <Announcement_other_Category_container>
+                                <Announcement_Category_image src={require(`../../images/Announcement_Images/${item.A_img}`)}></Announcement_Category_image>
+                                <Announcement_Category_title>{item.A_smellTitle}</Announcement_Category_title>
+                            </Announcement_other_Category_container>
+                        </Link>
 
-                        <Announcement_other_Category_container>
-                            <Announcement_Category_image src="http://www.gcd.pccu.edu.tw/img/news_pict/news_null.png"></Announcement_Category_image>
-                            <Announcement_Category_title>{item.contenr}</Announcement_Category_title>
-                        </Announcement_other_Category_container>
-
-                    </>))
+                    </>)) : null
 
             }
-            <Announcement_Category_allcaregory>查看所有公告</Announcement_Category_allcaregory>
+            <Link to={`/announcement`}>
+                <Announcement_Category_allcaregory>查看所有公告</Announcement_Category_allcaregory>
+            </Link>
         </Announcement_Category_container>
     )
 }
@@ -41,6 +46,10 @@ const Announcement_Category_container = styled.div`
     justify-content: center;
     margin-left: 50px;
     margin-top: 20px;
+    @media (max-width: ${({ theme }) => theme.w_900.w}) {
+        margin: 5em 0px 2em 0px;
+
+	}
 
 `
 const Announcement_other_Category_txt = styled.h4`
@@ -53,11 +62,14 @@ const Announcement_other_Category_container = styled.div`
     margin: 20px 0px 30px 0px;
 `
 const Announcement_Category_image = styled.img`
-    height: 60px;
+    width: 70px;
+    height: auto;
     margin-right: 20px;
+   
 `
 const Announcement_Category_title = styled.div`
     font-size: 12px;
+    color: #ee8987;
 `
 const Announcement_Category_allcaregory = styled.h4`
     font-size: 16px;

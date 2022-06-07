@@ -11,9 +11,9 @@ export const links = [
 		path: "/department/introduce",
 		state: false,
 		id: 1,
-		children_path:[
+		children_path: [
 			{
-				name: "歷史沿革、介紹",
+				name: "歷史沿革、系所介紹",
 				path: "introduce",
 				state: true,
 				id: 1,
@@ -25,51 +25,25 @@ export const links = [
 				id: 2,
 			},
 			{
-				name: "師資介紹",
-				path: "teacher",
+				name: "評鑑公開資訊",
+				path: "openResounce",
 				state: false,
 				id: 3,
 			}
 		]
 	},
 	{
-		name: "課程規劃",
-		path: "/course/resources_p1",
+		name: "師資介紹",
+		path: "/teacher",
 		state: false,
 		id: 2,
-		children_path:[
-			{
-				name: "碩士班各年級必修課程",
-				path: "resources_p1",
-				state: true,
-				id: 1,
-			},
-			{
-				name: "學士班各年級選修專業課程",
-				path: "resources_p2",
-				state: false,
-				id: 2,
-			},
-			{
-				name: "專業課程學群分組手冊",
-				path: "resources_p3",
-				state: false,
-				id: 3,
-			},
-			{
-				name: "輔系雙主修申請",
-				path: "resources_p4",
-				state: false,
-				id: 3,
-			}
-		]
 	},
 	{
-		name: "學術研究",
+		name: "學術研究成果",
 		path: "/Research/Research_p1",
 		state: false,
 		id: 3,
-		children_path:[
+		children_path: [
 			{
 				name: "學生參與專題研究情形",
 				path: "Research_p1",
@@ -109,22 +83,56 @@ export const links = [
 		id: 4
 	},
 	{
-		name: "公開資訊與相關連結",
-		path: "/openSounce",
+		name: "課程修習與資源",
+		path: "/Resource/bachelor",
 		state: false,
-		id: 5
-	},
-	{
-		name: "高中生專區",
-		path: "/highSchool",
-		state: false,
-		id: 6
+		id: 5,
+		children_path: [
+			{
+				name: "學士班",
+				path: "bachelor",
+				state: true,
+				id: 1,
+			},
+			{
+				name: "碩士班",
+				path: "master",
+				state: false,
+				id: 2,
+			},
+			{
+				name: "各類申請表",
+				path: "form",
+				state: false,
+				id: 3,
+			}
+		]
 	},
 	{
 		name: "招生訊息",
-		path: "/Admissions",
+		path: "/Admissions/highSchool",
 		state: false,
-		id: 7
+		id: 6,
+		children_path: [
+			{
+				name: "高中生",
+				path: "highSchool",
+				state: false,
+				id: 1,
+			},
+			{
+				name: "碩士班考試",
+				path: "MasterExamination",
+				state: false,
+				id: 2,
+			},
+			{
+				name: "五年學碩一貫學程",
+				path: "learn",
+				state: false,
+				id: 3,
+			}
+		]
 	},
 ];
 

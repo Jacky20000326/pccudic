@@ -55,7 +55,7 @@ const Department_page = () => {
 				</Department_links_container>
 				<Separate_line_rwd />
 				<Department_info>
-					<Outlet />
+					<Outlet_styled />
 				</Department_info>
 			</Department_info_container>
 
@@ -65,8 +65,13 @@ const Department_page = () => {
 
 const Department_container = styled.div`
 	padding: 0px 143px 0px 131px;
+	margin-bottom: 170px;
 	@media (max-width: ${({ theme }) => theme.w_900.w}) {
         padding: ${({ theme }) => theme.w_900.padding};
+	}
+	@media (max-width: ${({ theme }) => theme.w_576.w}) {
+		padding: ${({ theme }) => theme.w_576.padding};
+
 	}
 `
 const Department_txt = styled.div`
@@ -75,6 +80,10 @@ const Department_txt = styled.div`
 	font-size: 32px;
 	@media (max-width: ${({ theme }) => theme.w_900.w}) {
 		font-size: ${({ theme }) => theme.w_900.title_fs};
+	}
+	@media (max-width: ${({ theme }) => theme.w_576.w}) {
+		font-size: 24px;
+
 	}
 
 `
@@ -144,5 +153,10 @@ const Department_info = styled.div`
 
 	}
 
+`
+const Outlet_styled = styled(Outlet)`
+/* @media (max-width: ${({ theme }) => theme.w_576.w}) {
+        padding: 0px 12px 0px 12px;
+	} */
 `
 export default Department_page;
